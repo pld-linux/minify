@@ -10,6 +10,7 @@ Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
 BuildRequires:	rpmbuild(macros) >= 1.553
+BuildRequires:	unzip
 Requires:	php-%{name} = %{version}-%{release}
 Requires:	webapps
 BuildArch:	noarch
