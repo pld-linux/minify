@@ -1,10 +1,11 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.4
-Release:	0.10
+Release:	0.12
 License:	New BSD License
 Group:		Applications/WWW
 Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
+Patch0:		paths.patch
 # Source0-md5:	f604b827980a8994c1b4dfd6f5974786
 Source1:	apache.conf
 Source2:	lighttpd.conf
@@ -55,6 +56,7 @@ Unit tests for Minify.
 
 %prep
 %setup -qc
+%patch0 -p1
 %undos UPGRADING.txt
 %undos -f php
 
@@ -64,18 +66,17 @@ mv min/README.txt README.min.txt
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{php_data_dir},%{_sysconfdir},%{_appdir},%{cachedir}}
 
-cp -a min/* $RPM_BUILD_ROOT%{_appdir}
-
-mv $RPM_BUILD_ROOT%{_appdir}/lib/* $RPM_BUILD_ROOT%{php_data_dir}
+cp -a min/*.php min/builder $RPM_BUILD_ROOT%{_appdir}
+cp -a min/lib/* $RPM_BUILD_ROOT%{php_data_dir}
 
 for config in config.php groupsConfig.php; do
 	mv $RPM_BUILD_ROOT{%{_appdir}/$config,%{_sysconfdir}}
 	ln -s %{_sysconfdir}/$config $RPM_BUILD_ROOT%{_appdir}
 done
 
-cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
-cp -a %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
-cp -a $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
+cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
 
 %triggerin -- apache1 < 1.3.37-3, apache1-base
 %webapp_register apache %{_webapp}

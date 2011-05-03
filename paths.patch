@@ -1,0 +1,30 @@
+--- ./min/builder/index.php~	2011-05-04 01:07:43.000000000 +0300
++++ ./min/builder/index.php	2011-05-04 01:07:45.460184430 +0300
+@@ -244,7 +244,7 @@
+         // regenerate cache if any of these change
+         filemtime(__FILE__)
+         ,filemtime(dirname(__FILE__) . '/../config.php')
+-        ,filemtime(dirname(__FILE__) . '/../lib/Minify.php')
++        ,filemtime($min_libPath.'/Minify.php')
+     )
+     ,'minifyAll' => true
+     ,'encodeOutput' => $encodeOutput
+--- minify-2.1.4/min/config.php	2011-05-04 01:09:34.368042578 +0300
++++ minify-2.1.4/min/config.php	2011-05-04 01:06:36.643994770 +0300
+@@ -49,6 +49,7 @@
+ //$min_cachePath = 'c:\\WINDOWS\\Temp';
+ //$min_cachePath = '/tmp';
+ //$min_cachePath = preg_replace('/^\\d+;/', '', session_save_path());
++$min_cachePath = '/var/cache/minify';
+ 
+ 
+ /**
+@@ -161,7 +162,7 @@
+  * Path to Minify's lib folder. If you happen to move it, change 
+  * this accordingly.
+  */
+-$min_libPath = dirname(__FILE__) . '/lib';
++$min_libPath = '/usr/share/php';
+ 
+ 
+ // try to disable output_compression (may not have an effect)
