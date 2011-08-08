@@ -1,12 +1,13 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.4
-Release:	0.12
+Release:	0.13
 License:	New BSD License
 Group:		Applications/WWW
-Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
+#Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
+Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}.tgz
+# Source0-md5:	2eeff0f069b52b89ba78c22d20de60e2
 Patch0:		paths.patch
-# Source0-md5:	f604b827980a8994c1b4dfd6f5974786
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
@@ -56,6 +57,7 @@ Unit tests for Minify.
 
 %prep
 %setup -qc
+mv mrclay-minify-*/* .
 %patch0 -p1
 %undos UPGRADING.txt
 %undos -f php
@@ -132,5 +134,3 @@ fi
 %{php_data_dir}/JSMinPlus.php
 %{php_data_dir}/Minify.php
 %{php_data_dir}/Minify
-%dir %{php_data_dir}/Solar
-%{php_data_dir}/Solar/Dir.php

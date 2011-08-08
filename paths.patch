@@ -9,16 +9,17 @@
      )
      ,'minifyAll' => true
      ,'encodeOutput' => $encodeOutput
---- minify-2.1.4/min/config.php	2011-05-04 01:09:34.368042578 +0300
-+++ minify-2.1.4/min/config.php	2011-05-04 01:06:36.643994770 +0300
-@@ -49,6 +49,7 @@
+--- minify-2.1.4/min/config.php~	2011-08-08 23:41:52.000000000 +0300
++++ minify-2.1.4/min/config.php	2011-08-08 23:42:34.122570527 +0300
+@@ -47,6 +47,8 @@
  //$min_cachePath = 'c:\\WINDOWS\\Temp';
  //$min_cachePath = '/tmp';
  //$min_cachePath = preg_replace('/^\\d+;/', '', session_save_path());
 +$min_cachePath = '/var/cache/minify';
- 
- 
++
  /**
+  * To use APC/Memcache/ZendPlatform for cache storage, require the class and
+  * set $min_cachePath to an instance. Example below:
 @@ -161,7 +162,7 @@
   * Path to Minify's lib folder. If you happen to move it, change 
   * this accordingly.
