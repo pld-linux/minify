@@ -1,19 +1,24 @@
+%define		php_min_version 5.2.1
+%include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.4
-Release:	0.13
+Release:	0.15
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
 Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}.tgz
 # Source0-md5:	2eeff0f069b52b89ba78c22d20de60e2
 Patch0:		paths.patch
+Patch1:		pear-firephp.patch
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
 BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	unzip
 Requires:	php-%{name} = %{version}-%{release}
+Requires:	php-common >= 4:%{php_min_version}
+Requires:	php-pcre
 Requires:	webapps
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -35,6 +40,12 @@ optimal client-side cache headers.
 %package -n php-%{name}
 Summary:	Minify Classes
 Group:		Applications/WWW
+Requires:	php-common >= 4:%{php_min_version}
+Requires:	php-date
+Requires:	php-dirs
+Requires:	php-mbstring
+Requires:	php-pcre
+Suggests:	php-firephp-FirePHPCore
 
 %description -n php-%{name}
 Minify Classes.
@@ -43,6 +54,8 @@ Minify Classes.
 Summary:	Minify URI Builder
 Group:		Applications/WWW
 Requires:	%{name} = %{version}-%{release}
+Requires:	php-common >= 4:%{php_min_version}
+Requires:	php-pcre
 
 %description builder
 Minify URI Builder.
@@ -58,11 +71,15 @@ Unit tests for Minify.
 %prep
 %setup -qc
 mv mrclay-minify-*/* .
-%patch0 -p1
-%undos UPGRADING.txt
 %undos -f php
+%patch0 -p1
+%patch1 -p1
+%undos UPGRADING.txt
 
 mv min/README.txt README.min.txt
+
+# php-firephp-FirePHPCore
+rm min/lib/FirePHP.php
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -129,7 +146,6 @@ fi
 %dir %{php_data_dir}/HTTP
 %{php_data_dir}/HTTP/ConditionalGet.php
 %{php_data_dir}/HTTP/Encoder.php
-%{php_data_dir}/FirePHP.php
 %{php_data_dir}/JSMin.php
 %{php_data_dir}/JSMinPlus.php
 %{php_data_dir}/Minify.php
