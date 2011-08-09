@@ -3,7 +3,7 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.4
-Release:	0.15
+Release:	0.16
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
@@ -28,6 +28,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir	%{_webapps}/%{_webapp}
 %define		_appdir		%{_datadir}/%{_webapp}
 %define		cachedir	/var/cache/%{name}
+
+# skip pear deps
+%define		_noautopear	pear(Minify.*) pear(JSMin.*)
+
+# put it together for rpmbuild
+%define		_noautoreq	%{?_noautophp} %{?_noautopear}
 
 %description
 Minify is a PHP5 app that helps you follow several of Yahoo!'s Rules
