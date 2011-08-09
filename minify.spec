@@ -3,7 +3,7 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.4
-Release:	0.16
+Release:	1
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
