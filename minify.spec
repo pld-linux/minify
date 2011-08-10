@@ -3,7 +3,7 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.4
-Release:	1
+Release:	2
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
@@ -30,7 +30,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		cachedir	/var/cache/%{name}
 
 # skip pear deps
-%define		_noautopear	pear(Minify.*) pear(JSMin.*)
+%define		_noautopear	pear(Minify.*) pear(JSMin.*) pear(HTTP/ConditionalGet.php) pear(HTTP/Encoder.php)
 
 # put it together for rpmbuild
 %define		_noautoreq	%{?_noautophp} %{?_noautopear}
