@@ -3,12 +3,12 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.4
-Release:	2
+Release:	3
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
 Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}.tgz
-# Source0-md5:	2eeff0f069b52b89ba78c22d20de60e2
+# Source0-md5:	15aedd4550cdcb0609d314cefd148d46
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Source1:	apache.conf
@@ -84,8 +84,12 @@ mv mrclay-minify-*/* .
 
 mv min/README.txt README.min.txt
 
+# not needed for functionality
+%{__rm} min/lib/Minify/YUI/CssCompressor.java
+%{__rm} -r min/lib/MrClay
+
 # php-firephp-FirePHPCore
-rm min/lib/FirePHP.php
+%{__rm} min/lib/FirePHP.php
 
 %install
 rm -rf $RPM_BUILD_ROOT
