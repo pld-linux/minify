@@ -30,7 +30,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		cachedir	/var/cache/%{name}
 
 # skip pear deps
-%define		_noautopear	pear(Minify.*) pear(JSMin.*) pear(HTTP/ConditionalGet.php) pear(HTTP/Encoder.php)
+%define		_noautopear	pear(Minify.*) pear(JSMin.*) pear(HTTP/ConditionalGet.php) pear(HTTP/Encoder.php) Requires: pear(FirePHPCore/FirePHP.class.php)
 
 # put it together for rpmbuild
 %define		_noautoreq	%{?_noautophp} %{?_noautopear}
