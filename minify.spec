@@ -11,6 +11,7 @@ Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
 # Source0-md5:	b120d4f5060a55e66ae23afa9172be31
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
+Patch2:		yui-path.patch
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
@@ -81,7 +82,10 @@ Unit tests for Minify.
 %undos -f php
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 %undos UPGRADING.txt
+
+find -type f | xargs chmod a-x
 
 #mv min/README.txt README.min.txt
 
@@ -91,6 +95,9 @@ Unit tests for Minify.
 
 # php-firephp-FirePHPCore
 %{__rm} min/lib/FirePHP.php
+
+# cleanup backups after patching
+find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 
 %install
 rm -rf $RPM_BUILD_ROOT
