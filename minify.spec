@@ -2,13 +2,13 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
-Version:	2.1.4
-Release:	3
+Version:	2.1.5
+Release:	1
 License:	New BSD License
 Group:		Applications/WWW
-#Source0:	http://minify.googlecode.com/files/%{name}_%{version}_beta.zip
-Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}.tgz
-# Source0-md5:	15aedd4550cdcb0609d314cefd148d46
+#Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}-%{version}.tgz
+Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
+# Source0-md5:	b120d4f5060a55e66ae23afa9172be31
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Source1:	apache.conf
@@ -75,14 +75,15 @@ Requires:	%{name} = %{version}-%{release}
 Unit tests for Minify.
 
 %prep
-%setup -qc
-mv mrclay-minify-*/* .
+%setup
+#%setup -qc
+#mv mrclay-minify-*/* .
 %undos -f php
 %patch0 -p1
 %patch1 -p1
 %undos UPGRADING.txt
 
-mv min/README.txt README.min.txt
+#mv min/README.txt README.min.txt
 
 # not needed for functionality
 %{__rm} min/lib/Minify/YUI/CssCompressor.java
