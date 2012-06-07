@@ -3,15 +3,18 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.5
-Release:	1
+Release:	2
 License:	New BSD License
 Group:		Applications/WWW
-#Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}-%{version}.tgz
-Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
-# Source0-md5:	b120d4f5060a55e66ae23afa9172be31
+#Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
+Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}-%{version}.tgz
+# Source0-md5:	b2c39b7edf323e99232141b8d25cbde4
+#Source0:	https://github.com/glensc/minify/tarball/lesscss#/%{name}-less-%{version}.tgz
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
+Patch3:		https://github.com/glensc/minify/commit/92ba959863775e9f24e17fa3f3787a03a63c9db2.patch
+# Patch3-md5:	b48ba17e2a329832e8e3b59f0a4ef57e
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
@@ -76,13 +79,14 @@ Requires:	%{name} = %{version}-%{release}
 Unit tests for Minify.
 
 %prep
-%setup
-#%setup -qc
-#mv mrclay-minify-*/* .
+#%setup
+%setup -qc
+mv *-minify-*/* .
 %undos -f php
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 %undos UPGRADING.txt
 
 find -type f | xargs chmod a-x
@@ -164,6 +168,8 @@ fi
 %dir %{php_data_dir}/HTTP
 %{php_data_dir}/HTTP/ConditionalGet.php
 %{php_data_dir}/HTTP/Encoder.php
+%{php_data_dir}/CSSMin.php
+%{php_data_dir}/DooDigestAuth.php
 %{php_data_dir}/JSMin.php
 %{php_data_dir}/JSMinPlus.php
 %{php_data_dir}/Minify.php
