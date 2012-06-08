@@ -29,3 +29,14 @@
  
  
  // try to disable output_compression (may not have an effect)
+--- minify-2.1.5/min/lib/Minify/ClosureCompiler.php~	2012-06-08 12:52:57.000000000 +0300
++++ minify-2.1.5/min/lib/Minify/ClosureCompiler.php	2012-06-08 12:53:25.935196513 +0300
+@@ -39,7 +39,7 @@
+      *
+      * @var string
+      */
+-    public static $jarFile = null;
++    public static $jarFile = '/usr/share/java/closure-compiler.jar';
+ 
+     /**
+      * Writable temp directory. This must be set before calling minifyJs().
