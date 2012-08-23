@@ -3,7 +3,7 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.5
-Release:	5
+Release:	6
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
@@ -20,9 +20,9 @@ Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
 BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	unzip
+Requires:	php(core) >= %{php_min_version}
 Requires:	php(pcre)
 Requires:	php-%{name} = %{version}-%{release}
-Requires:	php-common >= 4:%{php_min_version}
 Requires:	webapps
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -50,9 +50,9 @@ optimal client-side cache headers.
 %package -n php-%{name}
 Summary:	Minify Classes
 Group:		Applications/WWW
+Requires:	php(core) >= %{php_min_version}
 Requires:	php(mbstring)
 Requires:	php(pcre)
-Requires:	php-common >= 4:%{php_min_version}
 Requires:	php-date
 Requires:	php-dirs
 Suggests:	php-firephp-FirePHPCore
@@ -64,8 +64,8 @@ Minify Classes.
 Summary:	Minify URI Builder
 Group:		Applications/WWW
 Requires:	%{name} = %{version}-%{release}
+Requires:	php(core) >= %{php_min_version}
 Requires:	php(pcre)
-Requires:	php-common >= 4:%{php_min_version}
 
 %description builder
 Minify URI Builder.
