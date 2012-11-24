@@ -7,7 +7,7 @@ Release:	7
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
-Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}-%{version}.tgz
+Source0:	https://github.com/mrclay/minify/tarball/master/%{name}-%{version}.tgz
 # Source0-md5:	7ead5f2bc26630c16b206c7c50e2aba1
 #Source0:	https://github.com/glensc/minify/tarball/lesscss#/%{name}-less-%{version}.tgz
 Patch0:		paths.patch
