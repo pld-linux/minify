@@ -13,8 +13,6 @@ Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}-%{version}.tgz
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
-Patch3:		https://github.com/glensc/minify/compare/master...issue-28.patch
-# Patch3-md5:	7becc6d49be446e5c304ecab9f19cae4
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
@@ -86,7 +84,6 @@ mv *-minify-*/* .
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 %undos UPGRADING.txt
 
 find -type f | xargs chmod a-x
