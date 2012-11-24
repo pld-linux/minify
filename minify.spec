@@ -16,7 +16,7 @@ Patch2:		yui-path.patch
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
-BuildRequires:	rpmbuild(macros) >= 1.553
+BuildRequires:	rpmbuild(macros) >= 1.654
 BuildRequires:	unzip
 Requires:	php(core) >= %{php_min_version}
 Requires:	php(pcre)
@@ -32,10 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		cachedir	/var/cache/%{name}
 
 # skip pear deps
-%define		_noautopear	pear(.*Minify/Loader.php) pear(FirePHPCore/FirePHP.class.php)
-
-# put it together for rpmbuild
-%define		_noautoreq	%{?_noautophp} %{?_noautopear}
+%define		_noautoreq_pear .*Minify/Loader.php FirePHPCore/FirePHP.class.php
 
 %description
 Minify is a PHP5 app that helps you follow several of Yahoo!'s Rules
