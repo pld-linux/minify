@@ -3,12 +3,12 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.5
-Release:	6
+Release:	7
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
 Source0:	https://github.com/mrclay/minify/tarball/master#/%{name}-%{version}.tgz
-# Source0-md5:	b2c39b7edf323e99232141b8d25cbde4
+# Source0-md5:	7ead5f2bc26630c16b206c7c50e2aba1
 #Source0:	https://github.com/glensc/minify/tarball/lesscss#/%{name}-less-%{version}.tgz
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
@@ -32,7 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		cachedir	/var/cache/%{name}
 
 # skip pear deps
-%define		_noautopear	pear(Minify.*) pear(JSMin.*) pear(HTTP/ConditionalGet.php) pear(HTTP/Encoder.php) Requires: pear(FirePHPCore/FirePHP.class.php)
+%define		_noautopear	pear(.*Minify/Loader.php) pear(FirePHPCore/FirePHP.class.php)
 
 # put it together for rpmbuild
 %define		_noautoreq	%{?_noautophp} %{?_noautopear}
@@ -49,9 +49,11 @@ optimal client-side cache headers.
 Summary:	Minify Classes
 Group:		Applications/WWW
 Requires:	php(core) >= %{php_min_version}
+Requires:	php(ctype)
+Requires:	php(date)
 Requires:	php(mbstring)
 Requires:	php(pcre)
-Requires:	php-date
+Requires:	php(spl)
 Requires:	php-dirs
 Suggests:	php-firephp-FirePHPCore
 
@@ -77,7 +79,6 @@ Requires:	%{name} = %{version}-%{release}
 Unit tests for Minify.
 
 %prep
-#%setup
 %setup -qc
 mv *-minify-*/* .
 %undos -f php
@@ -87,8 +88,6 @@ mv *-minify-*/* .
 %undos UPGRADING.txt
 
 find -type f | xargs chmod a-x
-
-#mv min/README.txt README.min.txt
 
 # not needed for functionality
 %{__rm} min/lib/Minify/YUI/CssCompressor.java
@@ -165,7 +164,7 @@ fi
 %dir %{php_data_dir}/HTTP
 %{php_data_dir}/HTTP/ConditionalGet.php
 %{php_data_dir}/HTTP/Encoder.php
-%{php_data_dir}/CSSMin.php
+%{php_data_dir}/CSSmin.php
 %{php_data_dir}/DooDigestAuth.php
 %{php_data_dir}/JSMin.php
 %{php_data_dir}/JSMinPlus.php

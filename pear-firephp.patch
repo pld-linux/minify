@@ -1,36 +1,30 @@
---- minify-2.1.4/min/index.php~	2011-08-09 09:44:09.000000000 +0300
-+++ minify-2.1.4/min/index.php	2011-08-09 09:47:16.322774073 +0300
-@@ -53,7 +53,7 @@
+--- minify-2.1.5/min/index.php~	2012-11-24 17:36:52.000000000 +0200
++++ minify-2.1.5/min/index.php	2012-11-24 17:38:55.089986108 +0200
+@@ -42,6 +42,7 @@
+ 
  if ($min_errorLogger) {
-     require_once 'Minify/Logger.php';
      if (true === $min_errorLogger) {
--        require_once 'FirePHP.php';
 +        require_once 'FirePHPCore/FirePHP.class.php';
          $min_errorLogger = FirePHP::getInstance(true);
      }
      Minify_Logger::setLogger($min_errorLogger);
-@@ -82,4 +82,4 @@
- } else {
-     header("Location: /");
-     exit();
--}
-\ No newline at end of file
-+}
---- minify-2.1.4/./min_unit_tests/_inc.php~	2011-08-09 09:44:09.000000000 +0300
-+++ minify-2.1.4/./min_unit_tests/_inc.php	2011-08-09 09:47:33.516828562 +0300
-@@ -17,7 +17,7 @@
+--- minify-2.1.5/min_extras/tools/minifyTextarea.php~	2012-11-24 17:36:52.000000000 +0200
++++ minify-2.1.5/min_extras/tools/minifyTextarea.php	2012-11-24 17:39:25.224568521 +0200
+@@ -31,6 +31,7 @@
+         $sourceSpec['minifyOptions']['cssMinifier'] = array('Minify_CSS', 'minify');
+     }
+     $source = new Minify_Source($sourceSpec);
++    require_once 'FirePHPCore/FirePHP.class.php';
+     Minify_Logger::setLogger(FirePHP::getInstance(true));
+     try {
+         Minify::serve('Files', array(
+--- minify-2.1.5/min_unit_tests/_inc.php~	2012-11-24 17:36:52.000000000 +0200
++++ minify-2.1.5/min_unit_tests/_inc.php	2012-11-24 17:39:45.102059111 +0200
+@@ -17,6 +17,7 @@
  if ($min_errorLogger && true !== $min_errorLogger) { // custom logger
      Minify_Logger::setLogger($min_errorLogger);
  } else {
--    require_once 'FirePHP.php';
 +    require_once 'FirePHPCore/FirePHP.class.php';
      Minify_Logger::setLogger(FirePHP::getInstance(true));
  }
  
-@@ -60,4 +60,4 @@
-         : strlen($str);
- }
- 
--ob_start();
-\ No newline at end of file
-+ob_start();
