@@ -1,0 +1,36 @@
+From 32abbfa328dcccf785452dd9cd032f224e378645 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Elan=20Ruusam=C3=A4e?= <glen@delfi.ee>
+Date: Sun, 2 Dec 2012 23:20:22 +0200
+Subject: [PATCH] allow setGroup keys be list of groups comma separated
+
+this allows loading multiple groups on page with
+Minify_HTML_Helper::getUri, keeping array method for loading list of
+sources
+
+the backend side for handling this in Minify_Controller_MinApp is
+already present.
+---
+ min/lib/Minify/HTML/Helper.php |    7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/min/lib/Minify/HTML/Helper.php b/min/lib/Minify/HTML/Helper.php
+index 807fdc9..64afc03 100644
+--- a/min/lib/Minify/HTML/Helper.php
++++ b/min/lib/Minify/HTML/Helper.php
+@@ -103,8 +103,11 @@ public function setGroup($key, $checkLastModified = true)
+             }
+             if (is_file($this->groupsConfigFile)) {
+                 $gc = (require $this->groupsConfigFile);
+-                if (isset($gc[$key])) {
+-                    $this->_lastModified = self::getLastModified($gc[$key]);
++                $keys = explode(',', $key);
++                foreach ($keys as $key) {
++                    if (isset($gc[$key])) {
++                        $this->_lastModified = self::getLastModified($gc[$key], $this->_lastModified);
++                    }
+                 }
+             }
+         }
+-- 
+1.7.10
+
