@@ -3,7 +3,7 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.5
-Release:	8
+Release:	9
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
@@ -17,6 +17,8 @@ Patch2:		yui-path.patch
 Patch3:		https://github.com/glensc/minify/commit/a82d70b0baaa85c8ca234e39918d678e2b4bea76.patch
 # https://github.com/mrclay/minify/pull/43
 Patch4:		https://github.com/glensc/minify/commit/32abbfa328dcccf785452dd9cd032f224e378645.patch
+# https://github.com/mrclay/minify/pull/47
+Patch5:		https://github.com/glensc/minify/commit/8c54519b32b2230293be60c5f9a8f514401171fc.patch
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
@@ -88,6 +90,7 @@ mv *-minify-*/* .
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 %undos UPGRADING.txt
 
 find -type f | xargs chmod a-x
