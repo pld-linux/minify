@@ -3,16 +3,13 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.5
-Release:	10
+Release:	9
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
 Source0:	https://github.com/mrclay/minify/tarball/master/%{name}-%{version}.tgz
 # Source0-md5:	7ead5f2bc26630c16b206c7c50e2aba1
 #Source0:	https://github.com/glensc/minify/tarball/lesscss#/%{name}-less-%{version}.tgz
-Source1:	apache.conf
-Source2:	lighttpd.conf
-Source3:	httpd.conf
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
@@ -22,6 +19,8 @@ Patch3:		https://github.com/glensc/minify/commit/a82d70b0baaa85c8ca234e39918d678
 Patch4:		https://github.com/glensc/minify/commit/32abbfa328dcccf785452dd9cd032f224e378645.patch
 # https://github.com/mrclay/minify/pull/47
 Patch5:		https://github.com/glensc/minify/commit/8c54519b32b2230293be60c5f9a8f514401171fc.patch
+Source1:	apache.conf
+Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
 BuildRequires:	rpmbuild(macros) >= 1.654
 BuildRequires:	unzip
@@ -29,7 +28,6 @@ Requires:	php(core) >= %{php_min_version}
 Requires:	php(pcre)
 Requires:	php-%{name} = %{version}-%{release}
 Requires:	webapps
-Conflicts:	apache-base < 2.4.0-1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -121,7 +119,7 @@ done
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
-cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
 
 %triggerin -- apache1 < 1.3.37-3, apache1-base
 %webapp_register apache %{_webapp}
@@ -129,10 +127,10 @@ cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 %triggerun -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
-%triggerin -- apache-base
+%triggerin -- apache < 2.2.0, apache-base
 %webapp_register httpd %{_webapp}
 
-%triggerun -- apache-base
+%triggerun -- apache < 2.2.0, apache-base
 %webapp_unregister httpd %{_webapp}
 
 %triggerin -- lighttpd
