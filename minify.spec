@@ -14,7 +14,7 @@ Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
 # https://github.com/mrclay/minify/pull/69
 Patch3:		https://github.com/glensc/minify/compare/contentfunc-params.patch
-# Patch3-md5:	5719c81d8147791aa824b9700217c06a
+# Patch3-md5:	bb60232a8a119d1d2eb0caa71dca9207
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
