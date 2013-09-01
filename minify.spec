@@ -3,7 +3,7 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	2.1.7
-Release:	1
+Release:	2
 License:	New BSD License
 Group:		Applications/WWW
 Source0:	https://github.com/mrclay/minify/archive/%{version}.tar.gz
@@ -12,6 +12,9 @@ Source0:	https://github.com/mrclay/minify/archive/%{version}.tar.gz
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
+# https://github.com/mrclay/minify/pull/69
+Patch3:		https://github.com/glensc/minify/compare/contentfunc-params.patch
+# Patch3-md5:	5719c81d8147791aa824b9700217c06a
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
@@ -80,6 +83,7 @@ Unit tests for Minify.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 %undos UPGRADING.txt
 
 find -type f | xargs chmod a-x
