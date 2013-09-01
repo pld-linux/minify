@@ -2,23 +2,16 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
-Version:	2.1.5
-Release:	10
+Version:	2.1.7
+Release:	1
 License:	New BSD License
 Group:		Applications/WWW
-#Source0:	https://minify.googlecode.com/files/%{name}-%{version}.zip
-Source0:	https://github.com/mrclay/minify/tarball/master/%{name}-%{version}.tgz
-# Source0-md5:	7ead5f2bc26630c16b206c7c50e2aba1
+Source0:	https://github.com/mrclay/minify/archive/%{version}.tar.gz
+# Source0-md5:	e59286e36fb3612789f853cdede8ed6a
 #Source0:	https://github.com/glensc/minify/tarball/lesscss#/%{name}-less-%{version}.tgz
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
-# https://github.com/mrclay/minify/pull/42
-Patch3:		https://github.com/glensc/minify/commit/a82d70b0baaa85c8ca234e39918d678e2b4bea76.patch
-# https://github.com/mrclay/minify/pull/43
-Patch4:		https://github.com/glensc/minify/commit/32abbfa328dcccf785452dd9cd032f224e378645.patch
-# https://github.com/mrclay/minify/pull/47
-Patch5:		https://github.com/glensc/minify/commit/8c54519b32b2230293be60c5f9a8f514401171fc.patch
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
@@ -82,15 +75,11 @@ Requires:	%{name} = %{version}-%{release}
 Unit tests for Minify.
 
 %prep
-%setup -qc
-mv *-minify-*/* .
+%setup -q
 %undos -f php
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
 %undos UPGRADING.txt
 
 find -type f | xargs chmod a-x
