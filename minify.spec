@@ -2,13 +2,12 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
-Version:	2.1.7
-Release:	2
+Version:	2.2.0
+Release:	1
 License:	New BSD License
 Group:		Applications/WWW
-Source0:	https://github.com/mrclay/minify/archive/%{version}.tar.gz
-# Source0-md5:	e59286e36fb3612789f853cdede8ed6a
-#Source0:	https://github.com/glensc/minify/tarball/lesscss#/%{name}-less-%{version}.tgz
+Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	25b45b2340cae680d169f75c8dcafbc7
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
