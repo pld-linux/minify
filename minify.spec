@@ -3,7 +3,7 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	3.0
-Release:	1
+Release:	2
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
@@ -18,11 +18,8 @@ Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
 BuildRequires:	rpmbuild(macros) >= 1.654
 BuildRequires:	unzip
-Requires:	php(core) >= %{php_min_version}
-Requires:	php(pcre)
 Requires:	php-%{name} = %{version}-%{release}
 Requires:	webapps
-Suggests:	lessphp >= 0.4.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -53,6 +50,8 @@ Requires:	php(mbstring)
 Requires:	php(pcre)
 Requires:	php(spl)
 Requires:	php-dirs
+Requires:	php-yui-css-compressor
+Suggests:	lessphp >= 0.4.0
 Suggests:	php-firephp-FirePHPCore
 
 %description -n php-%{name}
@@ -94,6 +93,9 @@ find -type f | xargs chmod a-x
 
 # php-firephp-FirePHPCore
 %{__rm} min/lib/FirePHP.php
+
+# php-yui-css-compressor
+%{__rm} min/lib/CSSmin.php
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
@@ -163,7 +165,6 @@ fi
 %dir %{php_data_dir}/HTTP
 %{php_data_dir}/HTTP/ConditionalGet.php
 %{php_data_dir}/HTTP/Encoder.php
-%{php_data_dir}/CSSmin.php
 %{php_data_dir}/DooDigestAuth.php
 %{php_data_dir}/JSMin.php
 %{php_data_dir}/JSMinPlus.php
