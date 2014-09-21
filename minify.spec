@@ -13,7 +13,6 @@ Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
 Patch3:		contentfunc-params.patch
-# Patch3-md5:	7d141179a296592a678e545f122d6788
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
