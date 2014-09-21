@@ -33,11 +33,15 @@ index 5a85d10..6825dd4 100644
              );
          // remove UTF-8 BOM if present
          return (pack("CCC",0xef,0xbb,0xbf) === substr($content, 0, 3))
-@@ -182,6 +185,7 @@ public static function getContentType($sources)
-     
-     protected $_content = null;
+@@ -188,6 +188,11 @@
      protected $_getContentFunc = null;
-+    protected $_getContentFuncParams = array();
-     protected $_id = null;
- }
  
+     /**
++     * @var array
++     */
++    protected $_getContentFuncParams = array();
++
++    /**
+      * @var string
+      */
+     protected $_id = null;

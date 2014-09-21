@@ -2,17 +2,18 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
-Version:	2.2.0
+Version:	3.0
 Release:	1
 License:	New BSD License
 Group:		Applications/WWW
-Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	25b45b2340cae680d169f75c8dcafbc7
+#Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/glensc/minify/archive/lessphp-dev3/%{name}-%{version}.tar.gz
+# Source0-md5:	a84596d6b4febde3d5f4b00698b7cc70
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
 Patch3:		contentfunc-params.patch
-# Patch3-md5:	bb60232a8a119d1d2eb0caa71dca9207
+# Patch3-md5:	7d141179a296592a678e545f122d6788
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://code.google.com/p/minify/
@@ -22,6 +23,7 @@ Requires:	php(core) >= %{php_min_version}
 Requires:	php(pcre)
 Requires:	php-%{name} = %{version}-%{release}
 Requires:	webapps
+Suggests:	lessphp >= 0.4.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -76,7 +78,8 @@ Requires:	%{name} = %{version}-%{release}
 Unit tests for Minify.
 
 %prep
-%setup -q
+%setup -qc
+mv %{name}-*/* .
 %undos -f php
 %patch0 -p1
 %patch1 -p1
