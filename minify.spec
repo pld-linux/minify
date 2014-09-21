@@ -11,8 +11,7 @@ Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
-# https://github.com/mrclay/minify/pull/69
-Patch3:		https://github.com/glensc/minify/compare/contentfunc-params.patch
+Patch3:		contentfunc-params.patch
 # Patch3-md5:	bb60232a8a119d1d2eb0caa71dca9207
 Source1:	apache.conf
 Source2:	lighttpd.conf

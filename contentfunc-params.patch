@@ -1,0 +1,43 @@
+https://github.com/mrclay/minify/pull/69
+
+From c487c39a7c0aac0211761a35cd2ba65992f14d6f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Elan=20Ruusam=C3=A4e?= <glen@delfi.ee>
+Date: Sun, 1 Sep 2013 15:45:56 +0300
+Subject: [PATCH] add parameters support to getContentFunc Minify_Source
+ callbacks
+
+---
+ min/lib/Minify/Source.php | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/min/lib/Minify/Source.php b/min/lib/Minify/Source.php
+index 5a85d10..6825dd4 100644
+--- a/min/lib/Minify/Source.php
++++ b/min/lib/Minify/Source.php
+@@ -81,6 +81,9 @@ public function __construct($spec)
+                 $this->_content = $spec['content'];
+             } else {
+                 $this->_getContentFunc = $spec['getContentFunc'];
++                $this->_getContentFuncParams = isset($spec['getContentFuncParams'])
++                    ? $spec['getContentFuncParams']
++                    : array();
+             }
+             $this->lastModified = isset($spec['lastModified'])
+                 ? $spec['lastModified']
+@@ -108,7 +111,7 @@ public function getContent()
+             ? file_get_contents($this->filepath)
+             : ((null !== $this->_content)
+                 ? $this->_content
+-                : call_user_func($this->_getContentFunc, $this->_id)
++                : call_user_func_array($this->_getContentFunc, array_merge(array($this->_id), $this->_getContentFuncParams))
+             );
+         // remove UTF-8 BOM if present
+         return (pack("CCC",0xef,0xbb,0xbf) === substr($content, 0, 3))
+@@ -182,6 +185,7 @@ public static function getContentType($sources)
+     
+     protected $_content = null;
+     protected $_getContentFunc = null;
++    protected $_getContentFuncParams = array();
+     protected $_id = null;
+ }
+ 
