@@ -1,5 +1,5 @@
---- minify-2.1.5/min/lib/Minify/YUICompressor.php~	2012-03-29 15:05:43.656136317 +0300
-+++ minify-2.1.5/min/lib/Minify/YUICompressor.php	2012-03-29 15:04:42.000000000 +0300
+--- minify-2.1.5/lib/Minify/YUICompressor.php~	2012-03-29 15:05:43.656136317 +0300
++++ minify-2.1.5/lib/Minify/YUICompressor.php	2012-03-29 15:04:42.000000000 +0300
 @@ -34,7 +34,7 @@
       *
       * @var string

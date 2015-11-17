@@ -3,19 +3,20 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	3.0
-Release:	2
+Release:	2.1
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
-Source0:	https://github.com/glensc/minify/archive/lessphp-dev3/%{name}-%{version}.tar.gz
-# Source0-md5:	a84596d6b4febde3d5f4b00698b7cc70
+#Source0:	https://github.com/glensc/minify/archive/lessphp-dev3/%{name}-%{version}.tar.gz
+Source0:	https://github.com/mrclay/minify/archive/590cf9b/%{name}-%{version}.tar.gz
+# Source0-md5:	981586911d22283e4ff1d7eb18001839
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
 Patch3:		contentfunc-params.patch
 Source1:	apache.conf
 Source2:	lighttpd.conf
-URL:		http://code.google.com/p/minify/
+URL:		https://github.com/mrclay/minify
 BuildRequires:	rpmbuild(macros) >= 1.654
 BuildRequires:	unzip
 Requires:	php-%{name} = %{version}-%{release}
@@ -88,14 +89,7 @@ mv %{name}-*/* .
 find -type f | xargs chmod a-x
 
 # not needed for functionality
-%{__rm} min/lib/Minify/YUI/CssCompressor.java
-%{__rm} -r min/lib/MrClay
-
-# php-firephp-FirePHPCore
-%{__rm} min/lib/FirePHP.php
-
-# php-yui-css-compressor
-%{__rm} min/lib/CSSmin.php
+%{__rm} -r lib/MrClay
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f

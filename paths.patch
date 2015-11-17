@@ -1,16 +1,16 @@
---- ./min/builder/index.php~	2011-05-04 01:07:43.000000000 +0300
-+++ ./min/builder/index.php	2011-05-04 01:07:45.460184430 +0300
-@@ -244,7 +244,7 @@
-         // regenerate cache if any of these change
-         filemtime(__FILE__)
-         ,filemtime(dirname(__FILE__) . '/../config.php')
--        ,filemtime(dirname(__FILE__) . '/../lib/Minify.php')
-+        ,filemtime($min_libPath.'/Minify.php')
-     )
-     ,'minifyAll' => true
-     ,'encodeOutput' => $encodeOutput
---- minify-3.0/min/config.php~	2014-09-21 14:35:09.243242976 +0300
-+++ minify-3.0/min/config.php	2014-09-21 14:35:25.356335208 +0300
+#--- ./builder/index.php~	2011-05-04 01:07:43.000000000 +0300
+#+++ ./builder/index.php	2011-05-04 01:07:45.460184430 +0300
+#@@ -244,7 +244,7 @@
+#         // regenerate cache if any of these change
+#         filemtime(__FILE__)
+#         ,filemtime(dirname(__FILE__) . '/../config.php')
+#-        ,filemtime(dirname(__FILE__) . '/../lib/Minify.php')
+#+        ,filemtime($min_libPath.'/Minify.php')
+#     )
+#     ,'minifyAll' => true
+#     ,'encodeOutput' => $encodeOutput
+--- minify-3.0/config.php~	2014-09-21 14:35:09.243242976 +0300
++++ minify-3.0/config.php	2014-09-21 14:35:25.356335208 +0300
 @@ -52,6 +52,7 @@
  //$min_cachePath = 'c:\\WINDOWS\\Temp';
  //$min_cachePath = '/tmp';
@@ -19,17 +19,17 @@
  
  /**
   * To use APC/Memcache/ZendPlatform for cache storage, require the class and
-@@ -161,7 +162,7 @@
-  * Path to Minify's lib folder. If you happen to move it, change 
-  * this accordingly.
-  */
--$min_libPath = dirname(__FILE__) . '/lib';
-+$min_libPath = '/usr/share/php';
- 
- 
- // try to disable output_compression (may not have an effect)
---- minify-2.1.5/min/lib/Minify/ClosureCompiler.php~	2012-06-08 12:52:57.000000000 +0300
-+++ minify-2.1.5/min/lib/Minify/ClosureCompiler.php	2012-06-08 12:53:25.935196513 +0300
+#@@ -161,7 +162,7 @@
+#  * Path to Minify's lib folder. If you happen to move it, change 
+#  * this accordingly.
+#  */
+#-$min_libPath = dirname(__FILE__) . '/lib';
+#+$min_libPath = '/usr/share/php';
+# 
+# 
+# // try to disable output_compression (may not have an effect)
+--- minify-2.1.5/lib/Minify/ClosureCompiler.php~	2012-06-08 12:52:57.000000000 +0300
++++ minify-2.1.5/lib/Minify/ClosureCompiler.php	2012-06-08 12:53:25.935196513 +0300
 @@ -39,7 +39,7 @@
       *
       * @var string
@@ -39,8 +39,8 @@
  
      /**
       * Writable temp directory. This must be set before calling minifyJs().
---- minify-2.1.5/./min/lib/Minify/ClosureCompiler.php~	2012-06-08 12:53:52.000000000 +0300
-+++ minify-2.1.5/./min/lib/Minify/ClosureCompiler.php	2012-06-08 12:57:47.829573716 +0300
+--- minify-2.1.5/lib/Minify/ClosureCompiler.php~	2012-06-08 12:53:52.000000000 +0300
++++ minify-2.1.5/lib/Minify/ClosureCompiler.php	2012-06-08 12:57:47.829573716 +0300
 @@ -46,7 +46,7 @@
       *
       * @var string
@@ -50,8 +50,8 @@
  
      /**
       * Filepath of "java" executable (may be needed if not in shell's PATH)
---- minify-2.1.5/./min/lib/Minify/YUICompressor.php~	2012-06-08 12:53:52.000000000 +0300
-+++ minify-2.1.5/./min/lib/Minify/YUICompressor.php	2012-06-08 12:58:02.023505622 +0300
+--- minify-2.1.5/lib/Minify/YUICompressor.php~	2012-06-08 12:53:52.000000000 +0300
++++ minify-2.1.5/lib/Minify/YUICompressor.php	2012-06-08 12:58:02.023505622 +0300
 @@ -42,7 +42,7 @@
       *
       * @var string

@@ -10,38 +10,36 @@ Subject: [PATCH] add parameters support to getContentFunc Minify_Source
  min/lib/Minify/Source.php | 6 +++++-
  1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/min/lib/Minify/Source.php b/min/lib/Minify/Source.php
-index 5a85d10..6825dd4 100644
---- a/min/lib/Minify/Source.php
-+++ b/min/lib/Minify/Source.php
-@@ -81,6 +81,9 @@ public function __construct($spec)
-                 $this->_content = $spec['content'];
+--- minify-3.0/lib/Minify/Source.php~	2015-11-17 16:35:06.295748327 +0200
++++ minify-3.0/lib/Minify/Source.php	2015-11-17 16:35:25.438800513 +0200
+@@ -50,6 +50,11 @@
+      */
+     protected $getContentFunc = null;
+ 
++     /**
++      * @var array
++      */
++    protected $getContentFuncParams = array();
++
+     /**
+      * @var string
+      */
+@@ -100,6 +100,9 @@
+                 $this->content = $spec['content'];
              } else {
-                 $this->_getContentFunc = $spec['getContentFunc'];
-+                $this->_getContentFuncParams = isset($spec['getContentFuncParams'])
+                 $this->getContentFunc = $spec['getContentFunc'];
++                $this->getContentFuncParams = isset($spec['getContentFuncParams'])
 +                    ? $spec['getContentFuncParams']
 +                    : array();
              }
              $this->lastModified = isset($spec['lastModified'])
                  ? $spec['lastModified']
-@@ -108,7 +111,7 @@ public function getContent()
-             ? file_get_contents($this->filepath)
-             : ((null !== $this->_content)
-                 ? $this->_content
--                : call_user_func($this->_getContentFunc, $this->_id)
-+                : call_user_func_array($this->_getContentFunc, array_merge(array($this->_id), $this->_getContentFuncParams))
-             );
-         // remove UTF-8 BOM if present
-         return (pack("CCC",0xef,0xbb,0xbf) === substr($content, 0, 3))
-@@ -188,6 +188,11 @@
-     protected $_getContentFunc = null;
- 
-     /**
-+     * @var array
-+     */
-+    protected $_getContentFuncParams = array();
-+
-+    /**
-      * @var string
-      */
-     protected $_id = null;
+@@ -171,7 +174,7 @@
+     {
+         if (null === $this->filepath) {
+             if (null === $this->content) {
+-                $content = call_user_func($this->getContentFunc, $this->id);
++                $content = call_user_func_array($this->getContentFunc, array_merge(array($this->id), $this->getContentFuncParams))
+             } else {
+                 $content = $this->content;
+             }

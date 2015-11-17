@@ -1,5 +1,5 @@
---- minify-2.1.5/min/index.php~	2012-11-24 17:36:52.000000000 +0200
-+++ minify-2.1.5/min/index.php	2012-11-24 17:38:55.089986108 +0200
+--- minify-2.1.5/index.php~	2012-11-24 17:36:52.000000000 +0200
++++ minify-2.1.5/index.php	2012-11-24 17:38:55.089986108 +0200
 @@ -42,6 +42,7 @@
  
  if ($min_errorLogger) {
@@ -8,8 +8,8 @@
          $min_errorLogger = FirePHP::getInstance(true);
      }
      Minify_Logger::setLogger($min_errorLogger);
---- minify-2.1.5/min_extras/tools/minifyTextarea.php~	2012-11-24 17:36:52.000000000 +0200
-+++ minify-2.1.5/min_extras/tools/minifyTextarea.php	2012-11-24 17:39:25.224568521 +0200
+-- minify-2.1.5/min_extras/tools/minifyTextarea.php~	2012-11-24 17:36:52.000000000 +0200
+++ minify-2.1.5/min_extras/tools/minifyTextarea.php	2012-11-24 17:39:25.224568521 +0200
 @@ -31,6 +31,7 @@
          $sourceSpec['minifyOptions']['cssMinifier'] = array('Minify_CSS', 'minify');
      }
@@ -18,8 +18,8 @@
      Minify_Logger::setLogger(FirePHP::getInstance(true));
      try {
          Minify::serve('Files', array(
---- minify-2.1.5/min_unit_tests/_inc.php~	2012-11-24 17:36:52.000000000 +0200
-+++ minify-2.1.5/min_unit_tests/_inc.php	2012-11-24 17:39:45.102059111 +0200
+-- minify-2.1.5/min_unit_tests/_inc.php~	2012-11-24 17:36:52.000000000 +0200
+++ minify-2.1.5/min_unit_tests/_inc.php	2012-11-24 17:39:45.102059111 +0200
 @@ -17,6 +17,7 @@
  if ($min_errorLogger && true !== $min_errorLogger) { // custom logger
      Minify_Logger::setLogger($min_errorLogger);
