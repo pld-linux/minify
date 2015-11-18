@@ -3,13 +3,13 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	3.0
-Release:	2.1
+Release:	2.2
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
 #Source0:	https://github.com/glensc/minify/archive/lessphp-dev3/%{name}-%{version}.tar.gz
-Source0:	https://github.com/mrclay/minify/archive/590cf9b/%{name}-%{version}.tar.gz
-# Source0-md5:	981586911d22283e4ff1d7eb18001839
+Source0:	https://github.com/mrclay/minify/archive/e271c37/%{name}-%{version}.tar.gz
+# Source0-md5:	4691fc13004fa5863bbfece3f70f6f6a
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
@@ -98,8 +98,8 @@ find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{php_data_dir},%{_sysconfdir},%{_appdir},%{cachedir}}
 
-cp -a min/*.php min/builder $RPM_BUILD_ROOT%{_appdir}
-cp -a min/lib/* $RPM_BUILD_ROOT%{php_data_dir}
+cp -a *.php builder $RPM_BUILD_ROOT%{_appdir}
+cp -a lib/* $RPM_BUILD_ROOT%{php_data_dir}
 
 for config in config.php groupsConfig.php; do
 	mv $RPM_BUILD_ROOT{%{_appdir}/$config,%{_sysconfdir}}
@@ -160,7 +160,5 @@ fi
 %{php_data_dir}/HTTP/ConditionalGet.php
 %{php_data_dir}/HTTP/Encoder.php
 %{php_data_dir}/DooDigestAuth.php
-%{php_data_dir}/JSMin.php
-%{php_data_dir}/JSMinPlus.php
 %{php_data_dir}/Minify.php
 %{php_data_dir}/Minify
