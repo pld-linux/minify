@@ -39,7 +39,7 @@ Subject: [PATCH] add parameters support to getContentFunc Minify_Source
          if (null === $this->filepath) {
              if (null === $this->content) {
 -                $content = call_user_func($this->getContentFunc, $this->id);
-+                $content = call_user_func_array($this->getContentFunc, array_merge(array($this->id), $this->getContentFuncParams))
++                $content = call_user_func_array($this->getContentFunc, array_merge(array($this->id), $this->getContentFuncParams));
              } else {
                  $content = $this->content;
              }
