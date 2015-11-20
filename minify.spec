@@ -1,15 +1,16 @@
 %define		php_min_version 5.2.1
+%define		subver	273a08f
 %include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	3.0
-Release:	2.3
+Release:	2.6
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
 #Source0:	https://github.com/glensc/minify/archive/lessphp-dev3/%{name}-%{version}.tar.gz
-Source0:	https://github.com/mrclay/minify/archive/e271c37/%{name}-%{version}.tar.gz
-# Source0-md5:	4691fc13004fa5863bbfece3f70f6f6a
+Source0:	https://github.com/mrclay/minify/archive/%{subver}/%{name}-%{version}-%{subver}.tar.gz
+# Source0-md5:	524e397b24721820b04a57dac4419875
 Patch0:		paths.patch
 Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
