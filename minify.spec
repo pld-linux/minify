@@ -3,7 +3,7 @@
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	3.0
-Release:	2.2
+Release:	2.3
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
@@ -17,6 +17,7 @@ Patch3:		contentfunc-params.patch
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		https://github.com/mrclay/minify
+BuildRequires:	phpab
 BuildRequires:	rpmbuild(macros) >= 1.654
 BuildRequires:	unzip
 Requires:	php-%{name} = %{version}-%{release}
@@ -93,6 +94,9 @@ find -type f | xargs chmod a-x
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
+
+%build
+phpab -n -e '*/tests/*' -o lib/Minify/autoload.php -b lib/Minify .
 
 %install
 rm -rf $RPM_BUILD_ROOT
