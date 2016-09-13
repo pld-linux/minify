@@ -50,14 +50,14 @@
  
      /**
       * Filepath of "java" executable (may be needed if not in shell's PATH)
---- minify-2.1.5/lib/Minify/YUICompressor.php~	2012-06-08 12:53:52.000000000 +0300
-+++ minify-2.1.5/lib/Minify/YUICompressor.php	2012-06-08 12:58:02.023505622 +0300
-@@ -42,7 +42,7 @@
+--- minify-3.0/lib/Minify/YUICompressor.php~	2016-09-13 14:45:21.416679630 +0300
++++ minify-3.0/lib/Minify/YUICompressor.php	2016-09-13 14:45:43.943019718 +0300
+@@ -45,7 +45,7 @@
       *
       * @var string
       */
 -    public static $tempDir = null;
 +    public static $tempDir = '/tmp';
-     
+ 
      /**
       * Filepath of "java" executable (may be needed if not in shell's PATH)

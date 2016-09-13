@@ -1,18 +1,17 @@
-%define		php_min_version 5.2.1
-%define		subver	273a08f
+%define		php_min_version 5.3.0
+%define		subver	a0e781e
 %include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
-Version:	3.0
-Release:	2.6
+Version:	3.0.0
+Release:	0.1
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
 #Source0:	https://github.com/glensc/minify/archive/lessphp-dev3/%{name}-%{version}.tar.gz
 Source0:	https://github.com/mrclay/minify/archive/%{subver}/%{name}-%{version}-%{subver}.tar.gz
-# Source0-md5:	524e397b24721820b04a57dac4419875
+# Source0-md5:	ccb1404f4f04331636c8ef7e0d3baf7b
 Patch0:		paths.patch
-Patch1:		pear-firephp.patch
 Patch2:		yui-path.patch
 Patch3:		contentfunc-params.patch
 Source1:	apache.conf
@@ -33,7 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		cachedir	/var/cache/%{name}
 
 # skip pear deps
-%define		_noautoreq_pear .*Minify/Loader.php FirePHPCore/FirePHP.class.php
+%define		_noautoreq_pear .*Minify/Loader.php
 
 %description
 Minify is a PHP5 app that helps you follow several of Yahoo!'s Rules
@@ -55,7 +54,6 @@ Requires:	php(spl)
 Requires:	php-dirs
 Requires:	php-yui-css-compressor
 Suggests:	lessphp >= 0.4.0
-Suggests:	php-firephp-FirePHPCore
 
 %description -n php-%{name}
 Minify Classes.
@@ -83,7 +81,6 @@ Unit tests for Minify.
 mv %{name}-*/* .
 %undos -f php
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %undos UPGRADING.txt
@@ -164,6 +161,5 @@ fi
 %dir %{php_data_dir}/HTTP
 %{php_data_dir}/HTTP/ConditionalGet.php
 %{php_data_dir}/HTTP/Encoder.php
-%{php_data_dir}/DooDigestAuth.php
 %{php_data_dir}/Minify.php
 %{php_data_dir}/Minify
