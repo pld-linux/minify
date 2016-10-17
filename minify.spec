@@ -1,16 +1,16 @@
 %define		php_min_version 5.3.0
-%define		subver	a0e781e
+%define		subver	74042c8
+%define		rel		0.2
 %include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	3.0.0
-Release:	0.1
+Release:	%{rel}.%{subver}
 License:	New BSD License
 Group:		Applications/WWW
 #Source0:	https://github.com/mrclay/minify/archive/%{version}/%{name}-%{version}.tar.gz
-#Source0:	https://github.com/glensc/minify/archive/lessphp-dev3/%{name}-%{version}.tar.gz
 Source0:	https://github.com/mrclay/minify/archive/%{subver}/%{name}-%{version}-%{subver}.tar.gz
-# Source0-md5:	ccb1404f4f04331636c8ef7e0d3baf7b
+# Source0-md5:	09b3a5f0db3efd7a4ebef9354ef6334c
 Patch0:		paths.patch
 Patch2:		yui-path.patch
 Patch3:		contentfunc-params.patch
@@ -54,6 +54,7 @@ Requires:	php(spl)
 Requires:	php-dirs
 Requires:	php-yui-css-compressor
 Suggests:	lessphp >= 0.4.0
+Suggests:	php-scssphp
 
 %description -n php-%{name}
 Minify Classes.
@@ -77,7 +78,7 @@ Requires:	%{name} = %{version}-%{release}
 Unit tests for Minify.
 
 %prep
-%setup -qc
+%setup -qc -n %{name}-%{version}-%{release}
 mv %{name}-*/* .
 %undos -f php
 %patch0 -p1
