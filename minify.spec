@@ -1,5 +1,4 @@
 %define		php_min_version 5.2.1
-%include	/usr/lib/rpm/macros.php
 Summary:	Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads
 Name:		minify
 Version:	3.0
